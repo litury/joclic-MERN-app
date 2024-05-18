@@ -24,11 +24,7 @@ const Hero = () => (
 
     <Section yPadding="pt-8 pb-32">
       <HeroOneButton
-        title={
-            <>
-                {'Поиск работы на автопилоте \n'}
-            </>
-        }
+        title={<>{'Поиск работы на автопилоте \n'}</>}
         subtitle="для WEB-разработчиков"
         description="Забудьте о рутине откликов доверьте это Joclic"
         button={

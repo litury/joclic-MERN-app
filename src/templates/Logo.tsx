@@ -1,32 +1,32 @@
-import { AppConfig } from '../utils/AppConfig';
-import {useRouter} from "next/router";
+import { useRouter } from 'next/router';
 
+import { AppConfig } from '../utils/AppConfig';
 
 type ILogoProps = {
-    xl?: boolean;
+  xl?: boolean;
 };
 
 const Logo = (props: ILogoProps) => {
-    const size = props.xl ? '34' : '22';
-    const fontStyle = props.xl
-        ? 'font-semibold text-3xl'
-        : 'font-semibold text-xl';
+  const size = props.xl ? '34' : '22';
+  const fontStyle = props.xl
+    ? 'font-semibold text-3xl'
+    : 'font-semibold text-xl';
 
-    const router = useRouter();
+  const router = useRouter();
 
-    return (
-        <span className={`inline-flex items-center text-gray-900 ${fontStyle}`}>
+  return (
+    <span className={`inline-flex items-center text-gray-900 ${fontStyle}`}>
       <img
-          src={`${router.basePath}/assets/images/Logo.png`}
-          alt="Logo"
-          width={size}
-          height={size}
-          className="mr-1"
+        src={`${router.basePath}/assets/images/Logo.png`}
+        alt="Logo"
+        width={size}
+        height={size}
+        className="mr-1"
       />
 
-            {AppConfig.site_name}
+      {AppConfig.site_name}
     </span>
-    );
+  );
 };
 
 export { Logo };
