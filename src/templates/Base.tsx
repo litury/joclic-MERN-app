@@ -1,20 +1,21 @@
-import { Meta } from '../layout/Meta';
-import { AppConfig } from '../utils/AppConfig';
-import { Banner } from './Banner';
-import { Footer } from './Footer';
-import { Hero } from './Hero';
-import { Sponsors } from './Sponsors';
-import { VerticalFeatures } from './VerticalFeatures';
+import {Meta} from '../layout/Meta';
+import {AppConfig} from '../utils/AppConfig';
+import {Banner} from './Banner';
+import {Footer} from './Footer';
+import {Hero} from './Hero';
+
+import {VerticalFeatures} from './VerticalFeatures';
+import {RoadmapSection} from './Roadmap'
 
 const Base = () => (
-  <div className="text-gray-600 antialiased">
-    <Meta title={AppConfig.title} description={AppConfig.description} />
-    <Hero />
-    <VerticalFeatures />
-    <Sponsors />
-    <Banner />
-    <Footer />
-  </div>
+    <div className="text-gray-600 antialiased">
+        <Meta title={AppConfig.title} description={AppConfig.description}/>
+        <Hero/>
+        <VerticalFeatures/>
+        <RoadmapSection/>
+        <Banner/>
+        <Footer/>
+    </div>
 );
 
-export { Base };
+export {Base};
