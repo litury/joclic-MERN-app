@@ -29,11 +29,11 @@ const Hero = () => (
             </div>
             <HeroOneButton
                 title={<>{'Ваша карьера на автопилоте'}</>}
-                subtitle="Автоматический поиск работы для разработчиков"
-                description="Отправленно 2323 откликов"
+                subtitle=" для Frontend разработчиков"
+
                 button={
                     <Link href="https://t.me/Joclic_bot">
-                        <Button xl>Запустить Joclic</Button>
+                        <Button xl icon={true} >Запустить Joclic</Button>
                     </Link>
                 }
             />
