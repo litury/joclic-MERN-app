@@ -9,7 +9,7 @@ import { Logo } from './Logo';
 
 
 const Hero = () => (
-    <Background color="bg-gray-100">
+    <Background color="bg-gray-100" className="h-screen">
         <Section yPadding="py-6">
             <NavbarTwoColumns logo={<Logo xl />}>
                 <li>
@@ -23,7 +23,7 @@ const Hero = () => (
             </NavbarTwoColumns>
         </Section>
 
-        <Section yPadding="pt-8 pb-32">
+        <Section yPadding="pt-8 pb-32" className="flex justify-center items-center h-full">
             <div>
                 {/* Здесь можно добавить дополнительный контент или компоненты */}
             </div>
