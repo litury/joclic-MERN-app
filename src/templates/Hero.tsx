@@ -23,10 +23,7 @@ const Hero = () => (
             </NavbarTwoColumns>
         </Section>
 
-        <Section yPadding="pt-8 pb-32" className="flex justify-center items-center h-full">
-            <div>
-                {/* Здесь можно добавить дополнительный контент или компоненты */}
-            </div>
+        <Section yPadding="pt-32 pb-0" >
             <HeroOneButton
                 title={<>{'Ваша карьера на автопилоте'}</>}
                 subtitle=" для Frontend разработчиков"
