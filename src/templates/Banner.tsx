@@ -5,6 +5,7 @@ import { CTABanner } from '../cta/CTABanner';
 import { Section } from '../layout/Section';
 
 const Banner = () => (
+
   <Section>
     <CTABanner
       title="Пока вы думаете, другие ищут работу без отсановки"
