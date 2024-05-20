@@ -4,15 +4,15 @@ import useTypewriter from 'react-typewriter-hook';
 
 
 const MagicOcean = [
-    "Frontend dev",
-    "Backend dev",
-    "Full Stack dev",
-    "Python dev",
-    "JavaScript dev",
-    "TypeScript dev",
-    "React dev",
-    "Angular dev",
-    "Vue dev"
+    "Frontend Dev ",
+    "Backend Dev",
+    "Full Stack Dev",
+    "Python Dev",
+    "JavaScript Dev",
+    "TypeScript Dev",
+    "React Dev",
+    "Angular Dev",
+    "Vue Dev"
 ];
 
 let index = 0;
@@ -77,10 +77,11 @@ const HeroOneButton = (props: IHeroOneButtonProps) => {
             </h1>
             <div className="my-4 text-2xl  font-bold text-primary-500">
                 <span>для </span>
-                <span>{magicNameTyping} </span>
+                <span>{magicNameTyping}</span>
                 <span style={{
                     visibility: isTypingFinished && isCursorVisible ? 'visible' : 'hidden',
-                    fontFamily: 'monospace'
+                    fontFamily: 'monospace',
+                    color: '#455A64',
                 }}>
   {' |'}
 </span>
