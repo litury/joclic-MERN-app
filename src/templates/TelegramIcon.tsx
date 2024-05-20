@@ -6,7 +6,7 @@ type TelegramIconProps = {
 
 const TelegramIcon: React.FC<TelegramIconProps> = ({size = 24}) => (
     <svg xmlns="http://www.w3.org/2000/svg" height={size} width={size} enable-background="new 0 0 32 32" viewBox="0 0 32 32"
-         id="telegram">
+         id="telegram" style={{opacity: 0.5}}>
         <path fill="#ECEFF1"
               d="M12.408,28.188c-0.865,0-0.717-0.327-1.016-1.148l-2.54-8.362L28.408,7.076L12.408,28.188z"></path>
         <path fill="#CFD8DC"
