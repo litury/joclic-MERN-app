@@ -2,7 +2,7 @@ import { VerticalFeatureRow } from '../feature/VerticalFeatureRow';
 import { Section } from '../layout/Section';
 
 const VerticalFeatures = () => (
-    <Section
+    <Section id="verticalFeatures"
         title="Как работает наш секретный рецепт успеха?"
         description="Забудьте о рутинном поиске работы и откликах на вакансии. Joclic возьмет все на себя, открывая для вас новые возможности карьерного роста."
     >
