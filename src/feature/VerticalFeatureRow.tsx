@@ -12,7 +12,7 @@ type IVerticalFeatureRowProps = {
 const VerticalFeatureRow = (props: IVerticalFeatureRowProps) => {
     const router = useRouter();
     const verticalFeatureClass = className(
-    'mt-20',
+    'mb-12 sm:flex',
     'flex',
     'flex-wrap',
     'items-center',
