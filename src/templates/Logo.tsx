@@ -7,15 +7,12 @@ type ILogoProps = {
 };
 
 const Logo = (props: ILogoProps) => {
-  const size = props.xl ? '24' : '12';
-  const fontStyle = props.xl
-    ? 'font-semibold text-xl'
-    : 'font-semibold text-lg';
+  const size = props.xl ? '30' : '18';
 
   const router = useRouter();
 
   return (
-    <span className={`inline-flex items-center text-gray-900 ${fontStyle}`}>
+    <span className={`inline-flex items-center text-gray-900 text-lg`}>
       <img
         src={`${router.basePath}/assets/images/Logo.png`}
         alt="Logo"
