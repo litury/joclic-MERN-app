@@ -19,9 +19,6 @@ const Hero = () => (
                         GitHub
                     </Link>
                 </li>
-                <li>
-                    <Link href="/">Sign in</Link>
-                </li>
             </NavbarTwoColumns>
         </Section>
 
