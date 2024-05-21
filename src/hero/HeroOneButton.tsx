@@ -91,9 +91,10 @@ const HeroOneButton = (props: IHeroOneButtonProps) => {
                 <span className="relative inline-block">
                     <CountUp start={previousResponses} end={responses} duration={1.5}/>
                     <span>{` откликов`}</span>
-                    <span
-                        style={{ top: '5px', right: '-5px' }}
-                        className="animate-pulse bg-green-500 rounded-full h-2 w-2 absolute transform translate-x-1/2 -translate-y-1/2"></span>
+                    {/*<span*/}
+                    {/*    style={{ top: '5px', right: '-5px' }}*/}
+                    {/*    className="animate-pulse bg-green-500 rounded-full h-2 w-2 absolute transform translate-x-1/2 -translate-y-1/2">*/}
+                    {/*</span>*/}
                 </span>
             </div>
 
