@@ -7,10 +7,10 @@ type ILogoProps = {
 };
 
 const Logo = (props: ILogoProps) => {
-  const size = props.xl ? '34' : '22';
+  const size = props.xl ? '24' : '12';
   const fontStyle = props.xl
-    ? 'font-semibold text-3xl'
-    : 'font-semibold text-xl';
+    ? 'font-semibold text-xl'
+    : 'font-semibold text-lg';
 
   const router = useRouter();
 
