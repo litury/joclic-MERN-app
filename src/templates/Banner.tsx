@@ -8,8 +8,9 @@ const Banner = () => (
 
   <Section>
     <CTABanner
-      title="Пока вы думаете, другие ищут работу без отсановки"
-      subtitle="Совершенно бесплатно"
+      title="Забудьте о рутинне поиска"
+      subtitle="Joclic сделает это за вас!"
+      text="Совершенно бесплатно"
       button={
         <Link href="https://creativedesignsguru.com/category/nextjs/">
           <Button>Отправить отклики</Button>
