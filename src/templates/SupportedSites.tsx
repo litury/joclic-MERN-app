@@ -1,9 +1,7 @@
-import Marquee  from 'react-fast-marquee';
+import Marquee from 'react-fast-marquee';
 
 
 const SupportedSites = () => {
-
-
     const sites = [
         { url: 'https://geekjob.ru/', name: 'GeekJob' },
         { url: 'https://getmatch.ru/', name: 'GetMatch' },
@@ -12,16 +10,15 @@ const SupportedSites = () => {
     ];
 
     return (
-            <Marquee gradient={false} speed={50}>
-                {sites.map((site, index) => (
-                    <div key={index} className="inline-block mx-4">
-                        <a href={site.url} target="_blank" rel="noopener noreferrer">
-                            {site.name}
-                        </a>
-                    </div>
-                ))}
-            </Marquee>
-
+        <Marquee gradient={false} speed={50}>
+            {sites.map((site, index) => (
+                <div key={index} className="inline-block mx-4 sm:mx-8 md:mx-12 lg:mx-16">
+                    <a href={site.url} target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base md:text-lg lg:text-xl">
+                        {site.name}
+                    </a>
+                </div>
+            ))}
+        </Marquee>
     );
 };
 
