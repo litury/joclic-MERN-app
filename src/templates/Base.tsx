@@ -3,6 +3,7 @@ import {AppConfig} from '../utils/AppConfig';
 import {Banner} from './Banner';
 import {Footer} from './Footer';
 import {Hero} from './Hero';
+import {OpenSourceSection} from './OpenSourceSection';
 
 import {VerticalFeatures} from './VerticalFeatures';
 import {RoadmapSection} from './Roadmap'
@@ -13,6 +14,7 @@ const Base = () => (
         <Hero/>
         <VerticalFeatures/>
         <RoadmapSection/>
+        <OpenSourceSection/>
         <Banner/>
         <Footer/>
     </div>
