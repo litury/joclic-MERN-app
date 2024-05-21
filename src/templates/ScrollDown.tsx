@@ -20,7 +20,7 @@ const ScrollDown = () => {
     return (
         <Link to="verticalFeatures" smooth={true} duration={500}>
             <motion.div
-                className="flex justify-center items-center text-4xl text-gray-700 cursor-pointer"
+                className="flex justify-center items-center text-4xl text-gray-700 cursor-pointer pb-4"
                 animate='infinite'
                 variants={bounceAnimation}
             >
