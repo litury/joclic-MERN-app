@@ -1,14 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Typography, Button } from 'antd';
 import TelegramIcon from '../templates/TelegramIcon';
 
 const { Title, Paragraph } = Typography;
 
 const RedirectPage = () => {
+
+    useEffect(() => {
+        handleRedirect();
+    }, []);
+
+
     const handleRedirect = () => {
-        // Здесь вы можете добавить логику для открытия Telegram бота
-        window.open('https://t.me/your_bot_username', '_blank');
+        // Попытка открыть Telegram бота через схему URL
+        const telegramUrl = 'tg://resolve?domain=joclic_bot';
+        window.open(telegramUrl, '_self');
     };
+
 
     return (
         <div
@@ -18,7 +26,7 @@ const RedirectPage = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 height: '100vh',
-                backgroundColor: '#0088cc',
+                backgroundColor: '#F3F4F6',
             }}
         >
             <div
@@ -50,7 +58,7 @@ const RedirectPage = () => {
                     }}
                 >
                     Вы успешно авторизовались с помощью OAuth2. Теперь вы можете перейти
-                    к JoClic Bot в Telegram и начать использовать все его возможности.
+                    к JoClic Bot в Telegram и смело использовать все его возможности.
                 </Paragraph>
                 <Button
                     type="primary"
@@ -59,10 +67,15 @@ const RedirectPage = () => {
                     onClick={handleRedirect}
                     icon={<TelegramIcon />}
                     style={{
-                        backgroundColor: '#0088cc',
-                        borderColor: '#0088cc',
-                        color: '#ffffff',
-                    }}
+                            backgroundColor: '#0088cc',
+                            borderColor: '#0088cc',
+                            color: '#ffffff',
+                            fontWeight: 'bold',
+                            padding: '0',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
                 >
                     Перейти к JoClic Bot
                 </Button>
