@@ -6,7 +6,7 @@ import { Section } from '../layout/Section';
 
 const Banner = () => (
 
-  <Section>
+  <Section yPadding="pt-0 pb-0">
     <CTABanner
       title="Забудьте о рутинне поиска"
       subtitle="Joclic сделает это за вас!"
