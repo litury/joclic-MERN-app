@@ -2,8 +2,7 @@ import { VerticalFeatureRow } from '../feature/VerticalFeatureRow';
 import { Section } from '../layout/Section';
 
 const VerticalFeatures = () => (
-    <Section id="verticalFeatures"
-    >
+    <Section id="verticalFeatures" yPadding="pt-6 pb-6">
       <VerticalFeatureRow
           title="JoClic знает, что вы хотите"
           description="Бот постоянно мониторит актуальные вакансии, соответствующие вашему стеку технологий и предпочтениям. Он всегда в курсе последних трендов и горячих предложений на рынке труда."
