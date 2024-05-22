@@ -35,8 +35,7 @@ const Hero = () => (
             />
         </Section>
 
-
-            <SupportedSites/>
+        <SupportedSites/>
 
 
         <Section className='flex items-center justify-center' yPadding="py-0">
