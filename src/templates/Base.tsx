@@ -6,14 +6,14 @@ import {Hero} from './Hero';
 import {OpenSourceSection} from './OpenSourceSection';
 
 import {VerticalFeatures} from './VerticalFeatures';
-import {RoadmapSection} from './Roadmap'
+import {Roadmap} from './Roadmap'
 
 const Base = () => (
     <div className="text-gray-600 antialiased">
         <Meta title={AppConfig.title} description={AppConfig.description}/>
         <Hero/>
         <VerticalFeatures/>
-        <RoadmapSection/>
+        <Roadmap/>
         <OpenSourceSection/>
         <Banner/>
         <Footer/>
