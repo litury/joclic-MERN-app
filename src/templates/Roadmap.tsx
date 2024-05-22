@@ -4,6 +4,8 @@ import {Timeline, Typography} from 'antd';
 
 const {Title, Paragraph} = Typography;
 
+type CategoryType = 'Завершенные задачи' | 'Текущие задачи' | 'Дорожная карта' | string;
+
 const Roadmap = () => {
     const [isDesktopOrLaptop, setIsDesktopOrLaptop] = useState(false);
 
@@ -12,7 +14,7 @@ const Roadmap = () => {
         setIsDesktopOrLaptop(mediaQuery.matches);
     }, []);
 
-    function getColor(section: any) {
+    function getColor(section: string) {
         switch (section) {
             case 'Завершенные задачи':
                 return 'green';
@@ -24,20 +26,16 @@ const Roadmap = () => {
                 return 'gray';
         }
     }
+    const categoryColors: Record<CategoryType, string> = {
+        'Завершенные задачи': 'bg-green-200',
+        'Текущие задачи': 'bg-orange-200',
+        'Дорожная карта': 'bg-blue-200',
+        default: 'bg-gray-200',
+    };
 
-    function getCategoryColor(category: any) {
-        switch (category.toLowerCase()) {
-            case 'завершенные задачи':
-                return 'green-200';
-            case 'текущие задачи':
-                return 'orange-200';
-            case 'дорожная карта':
-                return 'blue-200';
-            default:
-                return 'gray-200';
-        }
+    function getCategoryColor(category: CategoryType) {
+        return categoryColors[category] || categoryColors.default;
     }
-
     const categories = {
         'Завершенные задачи': [
             {
@@ -127,7 +125,7 @@ const Roadmap = () => {
                 {Object.entries(categories).map(([category, steps], categoryIndex) => (
                     <React.Fragment key={categoryIndex}>
                         <Timeline.Item color="gray">
-                            <div className={`p-2 rounded-md bg-${getCategoryColor(category)}`}>
+                            <div className={`p-2 rounded-md ${getCategoryColor(category)}`}>
                                 <h2 className="text-lg font-bold">{category}</h2>
                             </div>
                         </Timeline.Item>
