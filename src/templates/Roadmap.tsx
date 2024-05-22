@@ -26,12 +26,12 @@ const Roadmap = () => {
     }
 
     function getCategoryColor(category: any) {
-        switch (category) {
-            case 'Завершенные задачи':
+        switch (category.toLowerCase()) {
+            case 'завершенные задачи':
                 return 'green-200';
-            case 'Текущие задачи':
+            case 'текущие задачи':
                 return 'orange-200';
-            case 'Дорожная карта':
+            case 'дорожная карта':
                 return 'blue-200';
             default:
                 return 'gray-200';
