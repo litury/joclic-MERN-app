@@ -6,7 +6,7 @@ import {HeroOneButton} from '../hero/HeroOneButton';
 import {Section} from '../layout/Section';
 import {NavbarTwoColumns} from '../navigation/NavbarTwoColumns';
 import {Logo} from './Logo';
-import {ScrollDown} from './ScrollDown';
+// import {ScrollDown} from './ScrollDown';
 import {SupportedSites} from './SupportedSites';
 
 
@@ -37,10 +37,6 @@ const Hero = () => (
 
         <SupportedSites/>
 
-
-        <Section className='flex items-center justify-center' yPadding="py-0">
-            <ScrollDown/>
-        </Section>
     </Background>
 );
 
