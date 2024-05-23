@@ -34,7 +34,6 @@ const Hero = () => (
                 }
             />
         </Section>
-
         <SupportedSites/>
 
     </Background>
