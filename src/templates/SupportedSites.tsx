@@ -10,10 +10,10 @@ const SupportedSites = () => {
     ];
 
     return (
-        <Marquee gradient={false} speed={50}>
+        <Marquee gradient={false} speed={50} className="lg:safe-bottom-lg safe-bottom-base">
             {sites.map((site, index) => (
-                <div key={index} className="inline-block mx-4 sm:mx-8 md:mx-12 lg:mx-16">
-                    <a href={site.url} target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base md:text-lg lg:text-xl">
+                <div key={index} className="inline-block mx-4 sm:mx-8 md:mx-12 lg:mx-32">
+                    <a href={site.url} target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base md:text-lg lg:text-3xl">
                         {site.name}
                     </a>
                 </div>
