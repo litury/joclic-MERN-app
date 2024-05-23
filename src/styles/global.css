@@ -19,3 +19,16 @@
 .animate-fade-in {
     animation: fade-in 0.5s ease-out;
 }
+
+@layer utilities {
+    .safe-bottom-lg {
+        padding-bottom: calc(env(safe-area-inset-bottom) + 15rem);
+    }
+    .safe-bottom-base {
+        padding-bottom: calc(env(safe-area-inset-bottom) + 4rem);
+    }
+}
+
+.vertical-feature:not(:last-child) {
+    padding-bottom: 4rem; /* Эквивалент pb-16 в Tailwind */
+}
