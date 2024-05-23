@@ -23,12 +23,12 @@
    ```bash
    git clone https://github.com/yourusername/joclic.git
    ```
-   
+
 2. Перейдите в папку с проектом:
    ```bash
     cd joclic
     ```
-   
+
 3. Установите зависимости:
     ```bash
     npm install
