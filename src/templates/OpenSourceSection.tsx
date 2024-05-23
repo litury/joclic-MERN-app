@@ -6,10 +6,11 @@ const { Title, Paragraph } = Typography;
 
 const OpenSourceSection = () => {
     return (
-        <div className="bg-white py-12">
+        <div className="bg-white md:py-16">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row items-center justify-center">
-                    <Card className="w-full md:w-1/2 lg:w-1/3 mb-8 md:mb-0 md:mr-8 p-8 shadow-lg rounded-lg">
+
+                    <Card className="w-full md:w-1/2 lg:w-1/3 mb-8 md:mb-0 md:mr-8 md:p-8 shadow-lg rounded-lg">
                         <div className="flex flex-col items-center">
                             <GithubOutlined className="text-4xl text-gray-500 mb-4" />
                             <Title level={3} className="text-xl font-bold mb-4">
