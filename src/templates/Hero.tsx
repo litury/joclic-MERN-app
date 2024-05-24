@@ -15,8 +15,8 @@ const Hero = () => (
         <Section className='items-start justify-start w-full pb-0' yPadding="py-6">
             <NavbarTwoColumns logo={<Logo xl/>}>
                 <li>
-                    <Link href="https://github.com/ixartz/Next-JS-Landing-Page-Starter-Template">
-                        GitHub
+                    <Link href="https://github.com/litury/joclic-landing">
+                        Open Source
                     </Link>
                 </li>
             </NavbarTwoColumns>
