@@ -1,6 +1,6 @@
 export const AppConfig = {
   site_name: 'JoClic',
-  title: 'JoClic - Ваша карьера на автопилоте',
-  description: 'Starter code for your Nextjs Boilerplate with Tailwind CSS',
+  title: 'Автоотклики на вакансии',
+  description: 'Ускорьте свой поиск работы с JoClic - приложением для автоматической отправки откликов на вакансии. Создавайте персонализированные отклики, мгновенно рассылайте их работодателям и экономьте время. Повысьте свои шансы на получение желанной должности с JoClic.',
   locale: 'ru',
 };
