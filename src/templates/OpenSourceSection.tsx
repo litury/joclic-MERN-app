@@ -21,7 +21,7 @@ const OpenSourceSection = () => {
                             </Paragraph>
                             <Button
                                 type="primary"
-                                href="https://github.com/your-repo"
+                                href="https://github.com/litury/joclic-landing"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 icon={<GithubOutlined />}
