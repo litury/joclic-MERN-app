@@ -6,18 +6,18 @@ import { Section } from '../layout/Section';
 
 const Banner = () => (
 
-  <Section yPadding="pt-0 pb-0">
-    <CTABanner
-      title="Забудьте о рутинне поиска"
-      subtitle="Joclic сделает это за вас!"
-      text="Совершенно бесплатно"
-      button={
-        <Link href="https://creativedesignsguru.com/category/nextjs/">
-          <Button>Отправить отклики</Button>
-        </Link>
-      }
-    />
-  </Section>
+    <Section yPadding="pt-0 pb-10">
+        <CTABanner
+            title="Больше откликов"
+            subtitle="Экономьте время"
+            text="Автоматизируйте процесс"
+            button={
+                <Link href="https://creativedesignsguru.com/category/nextjs/">
+                    <Button>Попробовать бесплатно</Button>
+                </Link>
+            }
+        />
+    </Section>
 );
 
 export { Banner };
