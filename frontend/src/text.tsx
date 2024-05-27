@@ -100,7 +100,7 @@
 //   </List>
 // )
 // };
--------------------------------
+
 //     const [expanded, setExpanded] = useState([]);
 //
 //     const handleAccordionChange = (index) => (newExpanded) => {
@@ -162,7 +162,7 @@
 //             </Accordion>
 //         </Section>
 //     );
------------------------------------
+
 // import {Section, Cell, Image, List} from '@telegram-apps/telegram-ui';
 // import {Link} from '@/components/Link/Link.tsx';
 // import tonSvg from './ton.svg';
