@@ -33,3 +33,5 @@ const SellPage = () => {
         </>
     )
 }
+
+export {SellPage}
