@@ -34,6 +34,7 @@ export const App: FC = () => {
   }, [themeParams]);
 
   useEffect(() => {
+    viewport?.expand();
     return viewport && bindViewportCSSVars(viewport);
   }, [viewport]);
 
@@ -50,16 +51,19 @@ export const App: FC = () => {
   }, [navigator]);
 
   return (
+
     <AppRoot
       appearance={miniApp.isDark ? 'dark' : 'light'}
       platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
     >
+
       <Router location={location} navigator={reactNavigator}>
         <Routes>
           {routes.map((route) => <Route key={route.path} {...route} />)}
           <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
       </Router>
+
     </AppRoot>
   );
 };
