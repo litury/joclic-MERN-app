@@ -1,7 +1,7 @@
 // File: IndexPage.tsx
 import type {FC} from 'react';
 import {Link} from '@/components/Link/Link.tsx';
-import {Placeholder, Title, Text, Button, LargeTitle, Subheadline} from '@telegram-apps/telegram-ui';
+import {Placeholder, Title, Text, Button} from '@telegram-apps/telegram-ui';
 import './IndexPage.css';
 
 import Lottie from "lottie-react";
