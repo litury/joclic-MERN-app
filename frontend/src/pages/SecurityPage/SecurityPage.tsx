@@ -6,7 +6,7 @@ import {HomeOutlined} from "@ant-design/icons";
 
 const SecurityPage: FC = () => {
 
-    const authlink = `https://hh.ru/oauth/authorize?response_type=code&client_id=VMCTV29C1QNJQVPSNEG4BRKKQDCH96GFBPT2S40IHFKCGP3MRNK7JB8AC4VOINKD&state=${telegram_id}`
+    const authlink = `TEST`
     const [isLoading, setIsLoading] = useState(false);
 
     return (
