@@ -3,7 +3,7 @@ import { Button } from '@telegram-apps/telegram-ui';
 import { HomeOutlined } from '@ant-design/icons';
 import pusher from '../pusher/pusher'
 import {Link} from '../Link/Link'
-import { useInitData, type User } from '@tma.js/sdk-react';
+import { useInitData } from '@tma.js/sdk-react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -23,18 +23,19 @@ const AuthButton = () => {
         const channel = pusher.subscribe(`auth-channel-${telegram_id}`);
         console.log(`Подписались на канал ${channel.name}`)
 
-        channel.bind('auth-success', (data) => {
+        channel.bind('auth-success', (data: any) => {
             setAuthStatus('success');
             setAuthMessage(data.message);
             setIsLoading(false);
             navigate('/profile');
-            console.log('Удачная авторизации');
+            console.log(authMessage);
+
         });
-        channel.bind('auth-error', (data) => {
+        channel.bind('auth-error', (data: any) => {
             setAuthStatus('error');
             setAuthMessage(data.message);
             setIsLoading(false);
-            console.log('Ошибка авторизации');
+            console.log(authMessage);
         });
 
         // Отключение от сервера при размонтировании компонента
