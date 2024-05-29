@@ -10,8 +10,7 @@
     "clean": "rimraf .next .swc out",
     "lint": "next lint",
     "format": "next lint --fix && prettier '**/*.{json,yaml}' --write --ignore-path .gitignore",
-    "check-types": "tsc --noEmit --pretty",
-    "prepare": "husky install"
+    "check-types": "tsc --noEmit --pretty"
   },
   "dependencies": {
     "antd": "^5.17.3",
