@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 const AuthButton = () => {
     const initData = useInitData();
     const telegram_id = initData?.user?.id
-    const authlink = `https://hh.ru/oauth/authorize?response_type=code&client_id=VMCTV29C1QNJQVPSNEG4BRKKQDCH96GFBPT2S40IHFKCGP3MRNK7JB8AC4VOINKD&state=${telegram_id}`
+    const authLink = `https://hh.ru/oauth/authorize?response_type=code&client_id=VMCTV29C1QNJQVPSNEG4BRKKQDCH96GFBPT2S40IHFKCGP3MRNK7JB8AC4VOINKD&state=${telegram_id}`
     const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +47,7 @@ const AuthButton = () => {
 
     return (
         <Link
-            to={authlink}
+            to={authLink}
             onClick={() => setIsLoading(true)}
         >
             <Button

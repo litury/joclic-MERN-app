@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const {handleAuth} = require('./head-hunter/auth/authController');
+const {getResumes} = require('./head-hunter/resumes/resumesController');
 
 const app = express();
 const server = http.createServer(app);
@@ -18,6 +19,7 @@ app.use(cors({
 app.use(express.json());
 
 app.get('/redirect', handleAuth);
+app.get('/resumes', getResumes);
 
 
 server.listen(3001, () => {
