@@ -10,20 +10,6 @@ import fs from "fs";
 export default defineConfig({
   base: '/reactjs-template/',
   plugins: [react(), tsconfigPaths()],
-  // Uncomment the next lines in case, you would like to run Vite dev server using HTTPS and in case,
-  // you have key and certificate. You retrieve your certificate and key using mkcert.
-  // Learn more:
-  // https://docs.telegram-mini-apps.com/platform/getting-app-link#mkcert
-  //
-  // server: {
-  //   port: 443,
-  //   https: {
-  //     cert: readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), './tma.internal.pem')),
-  //     key: readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), './tma.internal-key.pem')),
-  //   },
-  //   host: 'tma.internal',
-  // },
-
   server: {
     port: 443,
     host: "0.0.0.0",
