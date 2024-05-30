@@ -1,8 +1,16 @@
 import Pusher from 'pusher-js';
 
-// Создаем экземпляр Pusher с настройками
-const pusher = new Pusher('948e95414d9c598ae01e', {
-    cluster: 'eu'
+const pusherKey = process.env.REACT_APP_PUSHER_KEY;
+const pusherCluster = process.env.REACT_APP_PUSHER_CLUSTER;
+
+if (!pusherKey || !pusherCluster) {
+    throw new Error('Variables not defined');
+}
+
+const pusher = new Pusher(
+    pusherKey,
+    {
+    cluster: pusherCluster
 });
 
 export default pusher;
