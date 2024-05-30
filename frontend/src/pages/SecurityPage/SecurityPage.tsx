@@ -10,27 +10,32 @@ const ResumesPage = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const fetchResumes = async () => {
-            const response = await fetch(`https://2537546-ps47079.twc1.net/resumes?telegram_id=${telegram_id}`);
+        const fetchApply = async () => {
+            const response = await fetch('https://2537546-ps47079.twc1.net/free-apply', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ telegram_id: telegram_id }),
+            });
             const data = await response.json();
-            setResumes(data.items);
+            setResumes(data);
             setIsLoading(false);
         };
-
-        console.log(`Fetching resumes for ${telegram_id}`);
-        fetchResumes();
-        console.log(`Fetched resumes for ${telegram_id}`);
+        fetchApply();
 
     }, [telegram_id]);
+
+    useEffect(() => {
+        console.log(resumes);
+    }, [resumes]);
 
     if (isLoading) {
         return <div>Loading...</div>; // Здесь можно добавить компонент загрузки
     }
 
     return (
-        <List>
-            {resumes.map(resume => <ResumeCard key={resume.id} resume={resume} />)}
-        </List>
+        <div>ЗАГРУЗИЛИ!</div>
     );
 };
 
