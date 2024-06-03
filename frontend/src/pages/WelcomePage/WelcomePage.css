@@ -1,0 +1,74 @@
+@keyframes shimmer {
+    0% {
+        background-color: var(--tg-theme-secondary-bg-color);
+    }
+    50% {
+        background-color: var(--tg-theme-bg-color);
+    }
+    100% {
+        background-color: var(--tg-theme-secondary-bg-color);
+    }
+}
+
+.skeleton {
+    background-color: var(--tg-theme-bg-color);
+    animation: shimmer 2s infinite;
+}
+
+.header {
+    background-color: var(--tg-theme-bg-color);
+}
+
+.fade-in {
+    animation: fade-in 1s;
+}
+
+.fade-out {
+    animation: fade-out 1s;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+
+.loading-text-container {
+    height: 2em;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-text {
+    position: absolute;
+    animation: loading-text-animation 1s linear infinite;
+}
+
+@keyframes loading-text-animation {
+    0% {
+        top: 100%;
+    }
+    50% {
+        top: 0%;
+    }
+    100% {
+        top: -100%;
+    }
+}
+
+.resume-card {
+background-color: var(--tg-theme-secondary-bg-color);
+}
