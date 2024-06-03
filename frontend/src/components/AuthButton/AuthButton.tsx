@@ -6,8 +6,6 @@ import {Link} from '../Link/Link'
 import { useInitData } from '@tma.js/sdk-react';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const AuthButton = () => {
     const initData = useInitData();
     const telegram_id = initData?.user?.id
@@ -27,10 +25,11 @@ const AuthButton = () => {
             setAuthStatus('success');
             setAuthMessage(data.message);
             setIsLoading(false);
-            navigate('/profile');
+            navigate('/welcome');
             console.log(authMessage);
 
         });
+
         channel.bind('auth-error', (data: any) => {
             setAuthStatus('error');
             setAuthMessage(data.message);
