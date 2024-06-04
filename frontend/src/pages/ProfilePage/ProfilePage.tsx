@@ -1,37 +1,107 @@
-// File: ProfilePage.tsx
-import type {FC} from 'react';
-import {Link} from '@/components/Link/Link.tsx';
-import {Placeholder, Title, Text, Button} from '@telegram-apps/telegram-ui';
+// ProfilePage.tsx
+import React from 'react';
+import {Section, Avatar, Text, List, Cell, Badge, Button, ButtonCell, Placeholder, Card} from '@telegram-apps/telegram-ui';
+import {ResumeCard} from './ResumeCard/ResumeCard.tsx';
 
-const ProfilePage: FC = () => {
+interface Resume {
+    id: number;
+    title: string;
+    conversion: {
+        invites: number;
+        rejections: number;
+    };
+}
+
+const user = {
+    name: 'Иван Петров',
+    avatarUrl: 'https://picsum.photos/id/1/100/100',
+    jobCoins: 120,
+    remainingApplications: 8,
+    resumes: [
+        {
+            id: 1,
+            title: 'Резюме 1',
+            conversion: {
+                invites: 5,
+                rejections: 2,
+            },
+        },
+        {
+            id: 2,
+            title: 'Резюме 2',
+            conversion: {
+                invites: 3,
+                rejections: 1,
+            },
+        },
+    ],
+};
+
+const placeholderStyle: React.CSSProperties = {
+    backgroundColor: `var(--tg-theme-bg-color)`,
+    marginBottom: '8px',
+    textAlign: 'center' as const, // Указываем 'center' как константу
+};
+
+const ProfilePage: React.FC = () => {
+    const handleToggleScript = (resumeId) => {
+        // Здесь вы можете вызвать функцию для запуска скрипта с идентификатором резюме
+        console.log(`Запуск скрипта для резюме ${resumeId}`);
+    };
+
     return (
-        <Placeholder
-            header={<Title >Привет работничек</Title>}
-            description={
-                <Text style={{
-                    textAlign: 'center',
-                    marginBottom: '20px',
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', margin: '0 auto',
-                    maxWidth: '100%'
+        <>
 
-                }}>
-                    <Text style={{padding: '0 16px',}}>
-                        <p style={{padding: '0', margin: '0'}}>Ищете путь сквозь</p>
-                        <p style={{padding: '0', margin: '0'}}>дебри вакансий?</p>
-
+            <Cell
+                subhead={
+                    <Text weight="2">
+                        Привет {user.name}
                     </Text>
-                    <Text style={{padding: '0 16px',}}>Joclic проведет вас напрямик</Text>
-                </Text>
-            }
-            action={
-                <Link to="/works">
-                    <Button size="l" stretched>Даа это так утомительно</Button>
-                </Link>
-            }
-        >
+                }
+                style={placeholderStyle}
+                description={
+                    <div style={{display: 'flex', justifyContent: 'space-between', gap: '8px'}}>
+                        <Card style={{padding: '8px', width: '100%', textAlign: 'center'}}>
+                            <div style={{fontSize: '12px'}}>Откликов</div>
+                            <div style={{fontSize: '16px', fontWeight: 'bold'}}>9</div>
+                        </Card>
+                        <Card style={{padding: '8px', width: '100%', textAlign: 'center'}}>
+                            <div style={{fontSize: '12px'}}>JOC</div>
+                            <div style={{fontSize: '16px', fontWeight: 'bold'}}>20</div>
+                        </Card>
+                        <Card style={{padding: '8px', width: '100%', textAlign: 'center'}}>
+                            <div style={{fontSize: '12px'}}>JOCIndex</div>
+                            <div style={{fontSize: '16px', fontWeight: 'bold'}}>7.65</div>
+                        </Card>
+                    </div>
+                }
+                subtitle={`Ваш общий баланс и средняя метрика:`}
+            />
 
-        </Placeholder>
+            <div>
+                <ResumeCard
+                    resumeName="Резюме Frontend-разработчика"
+                    responses={25}
+                    invitations={3}
+                    rejections={2}
+                    views={100}
+                    onToggleScript={handleToggleScript}
+                />
+
+                <ResumeCard
+                    resumeName="Резюме Frontend React"
+                    responses={25}
+                    invitations={3}
+                    rejections={2}
+                    views={100}
+                    onToggleScript={handleToggleScript}
+                />
+            </div>
+        </>
     );
 };
+
+export default ProfilePage;
+
 
 export {ProfilePage}

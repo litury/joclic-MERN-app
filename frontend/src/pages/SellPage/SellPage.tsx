@@ -1,8 +1,18 @@
 import {Cell, Info, Title} from "@telegram-apps/telegram-ui";
 import {HomeOutlined} from "@ant-design/icons";
-
+import {useBackButton} from "@tma.js/sdk-react";
+import {useEffect} from "react";
 
 const SellPage = () => {
+    const backButton = useBackButton();
+
+    useEffect(() => {
+        backButton.hide();
+
+        return () => {
+            backButton.show();
+        }
+    }, [])
 
     return (
         <>

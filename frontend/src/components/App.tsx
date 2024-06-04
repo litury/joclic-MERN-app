@@ -1,69 +1,105 @@
-import { useIntegration } from '@tma.js/react-router-integration';
+import {useIntegration} from '@tma.js/react-router-integration';
 import {
-  bindMiniAppCSSVars,
-  bindThemeParamsCSSVars,
-  bindViewportCSSVars,
-  initNavigator, useLaunchParams,
-  useMiniApp,
-  useThemeParams,
-  useViewport,
+    bindMiniAppCSSVars,
+    bindThemeParamsCSSVars,
+    bindViewportCSSVars,
+    initNavigator, useInitData, useLaunchParams,
+    useMiniApp,
+    useThemeParams,
+    useViewport,
 } from '@tma.js/sdk-react';
-import { AppRoot } from '@telegram-apps/telegram-ui';
-import { type FC, useEffect, useMemo } from 'react';
+import {AppRoot} from '@telegram-apps/telegram-ui';
+import {type FC, useEffect, useMemo} from 'react';
 import {
-  Navigate,
-  Route,
-  Router,
-  Routes,
+    Navigate,
+    Route,
+    Router,
+    Routes,
 } from 'react-router-dom';
-
-import { routes } from '@/navigation/routes.tsx';
+import {routes} from '@/navigation/routes.tsx';
+import {AuthorizedTabbar} from '@/components/AuthorizedTabbar/AuthorizedTabbar.tsx';
+import useAuthStore from '../store/authStore.ts';
 
 export const App: FC = () => {
-  const lp = useLaunchParams();
-  const miniApp = useMiniApp();
-  const themeParams = useThemeParams();
-  const viewport = useViewport();
+    const lp = useLaunchParams();
+    const miniApp = useMiniApp();
+    const themeParams = useThemeParams();
+    const viewport = useViewport();
+    const initData = useInitData();
+    const userID = initData?.user?.id;
+    const { isAuthorized, setIsAuthorized } = useAuthStore();
 
-  useEffect(() => {
-    return bindMiniAppCSSVars(miniApp, themeParams);
-  }, [miniApp, themeParams]);
+    // Функция для проверки статуса авторизации
+    const checkAuthStatus = async (userID: any) => {
+        try {
+            const response = await fetch(`https://2537546-ps47079.twc1.net/check-auth?userId=${userID}`);
 
-  useEffect(() => {
-    return bindThemeParamsCSSVars(themeParams);
-  }, [themeParams]);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
 
-  useEffect(() => {
-    viewport?.expand();
-    return viewport && bindViewportCSSVars(viewport);
-  }, [viewport]);
 
-  // Create new application navigator and attach it to the browser history, so it could modify
-  // it and listen to its changes.
-  const navigator = useMemo(() => initNavigator('app-navigation-state'), []);
-  const [location, reactNavigator] = useIntegration(navigator);
+            if (response.status === 200) {
+                setIsAuthorized(true);
+            }
 
-  // Don't forget to attach the navigator to allow it to control the BackButton state as well
-  // as browser history.
-  useEffect(() => {
-    navigator.attach();
-    return () => navigator.detach();
-  }, [navigator]);
+            if (response.status === 401) {
+                setIsAuthorized(false);
+            }
+        } catch (error) {
+            console.error('Ошибка при проверке статуса авторизации:', error);
+            setIsAuthorized(false);
+        }
+    };
 
-  return (
+    useEffect(() => {
+        console.log('userID:', userID);
+        console.log('isAuthorized:', isAuthorized);
+        checkAuthStatus(userID);
+    }, []);
 
-    <AppRoot
-      appearance={miniApp.isDark ? 'dark' : 'light'}
-      platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
-    >
+    useEffect(() => {
+        return bindMiniAppCSSVars(miniApp, themeParams);
+    }, [miniApp, themeParams]);
 
-      <Router location={location} navigator={reactNavigator}>
-        <Routes>
-          {routes.map((route) => <Route key={route.path} {...route} />)}
-          <Route path='*' element={<Navigate to='/'/>}/>
-        </Routes>
-      </Router>
+    useEffect(() => {
+        return bindThemeParamsCSSVars(themeParams);
+    }, [themeParams]);
 
-    </AppRoot>
-  );
+    useEffect(() => {
+        viewport?.expand();
+        return viewport && bindViewportCSSVars(viewport);
+    }, [viewport]);
+
+    const navigator = useMemo(() => initNavigator('app-navigation-state'), []);
+    const [location, reactNavigator] = useIntegration(navigator);
+
+    useEffect(() => {
+        navigator.attach();
+        return () => navigator.detach();
+    }, [navigator]);
+
+    return (
+
+        <AppRoot appearance={miniApp.isDark ? 'dark' : 'light'} platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}>
+            <Router location={location} navigator={reactNavigator}>
+                {isAuthorized === null ? (
+                    <div>Loading...</div>
+                ) : (
+                    <>
+                    <Routes>
+                        {routes.map((route) => (
+                            <Route key={route.path} {...route} />
+                        ))}
+                        <Route
+                            path="*"
+                            element={<Navigate to={isAuthorized ? '/profile' : '/start'} replace={true} />}
+                        />
+                    </Routes>
+                        {isAuthorized && location.pathname !== '/welcome' && <AuthorizedTabbar />}
+                    </>
+                )}
+            </Router>
+        </AppRoot>
+    );
 };

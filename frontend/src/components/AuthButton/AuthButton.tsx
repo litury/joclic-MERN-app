@@ -1,3 +1,5 @@
+// Filename: AuthButton.tsx
+
 import { useState, useEffect } from 'react';
 import { Button } from '@telegram-apps/telegram-ui';
 import { HomeOutlined } from '@ant-design/icons';
@@ -5,13 +7,14 @@ import pusher from '../pusher/pusher'
 import {Link} from '../Link/Link'
 import { useInitData } from '@tma.js/sdk-react';
 import { useNavigate } from 'react-router-dom';
+import useAuthStore from '../../store/authStore.ts';
 
 const AuthButton = () => {
     const initData = useInitData();
     const telegram_id = initData?.user?.id
     const authLink = `https://hh.ru/oauth/authorize?response_type=code&client_id=VMCTV29C1QNJQVPSNEG4BRKKQDCH96GFBPT2S40IHFKCGP3MRNK7JB8AC4VOINKD&state=${telegram_id}`
     const navigate = useNavigate();
-
+    const { setIsAuthorized } = useAuthStore();
     const [isLoading, setIsLoading] = useState(false);
     const [authStatus, setAuthStatus] = useState('');
     const [authMessage, setAuthMessage] = useState('');
@@ -26,6 +29,7 @@ const AuthButton = () => {
             setAuthMessage(data.message);
             setIsLoading(false);
             navigate('/welcome');
+            setIsAuthorized(true);
             console.log(authMessage);
 
         });
