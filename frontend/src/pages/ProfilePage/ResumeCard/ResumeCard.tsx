@@ -12,7 +12,6 @@ const ResumeCard = ({ resumeName, responses, invitations, rejections, views, onT
             <Divider/>
         <Cell
             style={cardStyle}
-            subhead={resumeName}
             subtitle="Поиск по рекомендациям HH.ru"
             after={
                 <Switch
@@ -21,12 +20,13 @@ const ResumeCard = ({ resumeName, responses, invitations, rejections, views, onT
             }
             description={
                 <div style={{marginTop: 8}}>
-                    <div>Откликов: {responses} | Просмотров: {views}</div>
-                    <div>Приглашений: {invitations} | конверсия 5.4%</div>
-                    <div>Отказов: {rejections} | конверсия 10%</div>
+                    <div>Просмотров: {views}</div>
                 </div>
             }
-        />
+        >
+            {resumeName}
+        </Cell>
+
         </>
     );
 };

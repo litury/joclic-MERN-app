@@ -1,10 +1,17 @@
-import {Cell, Info, Title} from "@telegram-apps/telegram-ui";
+import {Cell, Info, Text, Title} from "@telegram-apps/telegram-ui";
 import {HomeOutlined} from "@ant-design/icons";
 import {useBackButton} from "@tma.js/sdk-react";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 
 const SellPage = () => {
     const backButton = useBackButton();
+
+    const placeholderStyle: React.CSSProperties = {
+        backgroundColor: `var(--tg-theme-bg-color)`,
+        marginBottom: '8px',
+        textAlign: 'center' as const, // Указываем 'center' как константу
+    };
+
 
     useEffect(() => {
         backButton.hide();
@@ -16,7 +23,16 @@ const SellPage = () => {
 
     return (
         <>
-            <Title style={{textAlign: 'center'}}>Тарифы откликов:</Title>
+            <Cell
+                subhead={
+                    <Text weight="2">
+                        Тарифы откликов
+                    </Text>
+                }
+                style={placeholderStyle}
+                subtitle="Тут вы можете обменять отклики"
+            />
+
             <Cell
                 after={<Info subtitle="за 2 JOC" type="text">+ 1 отклик</Info>}
                 before={<HomeOutlined style={{fontSize: '20px'}}/>}
@@ -34,7 +50,7 @@ const SellPage = () => {
             </Cell>
 
             <Cell
-                after={<Info subtitle="за 1 товарища" type="text">+ 25 откликов</Info>}
+                after={<Info subtitle="за 2 рубля" type="text">+ 1 отклик</Info>}
                 before={<HomeOutlined style={{fontSize: '20px'}}/>}
                 subtitle="Cрочный"
             >

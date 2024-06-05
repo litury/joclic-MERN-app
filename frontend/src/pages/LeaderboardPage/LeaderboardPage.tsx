@@ -7,7 +7,7 @@ import {
 
 } from '@telegram-apps/telegram-ui';
 import {useBackButton} from "@tma.js/sdk-react";
-
+import './LeaderboardPage.css'
 interface Resume {
     id: number;
     name: string;
@@ -57,7 +57,10 @@ const resumes: Resume[] = [
 const placeholderStyle: React.CSSProperties = {
     backgroundColor: `var(--tg-theme-bg-color)`,
     marginBottom: '8px',
-    textAlign: 'center' as const, // Указываем 'center' как константу
+    textAlign: 'center' as const,
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'block'
 };
 
 
@@ -80,29 +83,30 @@ const LeaderboardPage: React.FC = () => {
     return (
         <>
             <Cell
-                subhead={
-                    <Text weight="2">
-                        Рейтинг резюме
-                    </Text>
-                }
+                className='leader-bord'
                 style={placeholderStyle}
                 description={"Рейтинг рассчитывается после 30 откликов"}
                 subtitle="Сравните свой рейтинг с другими"
-            />
+            >
+
+                    Рейтинг резюме
+
+            </Cell>
 
 
             <div style={{marginBottom: 70, display: 'flex', flexDirection: 'column', gap: 8}}>
                 {resumes.map((resume, index) => (
 
-                        <Cell
-                            before={index + 1}
-                            after={<Badge type="number">{resume.jobIndex}</Badge>}
-                            style={cellStyle}
-                            description={`Всего просмотров ${resume.jobIndex}`}
-                            subtitle={`Отправлено откликов: ${resume.appliedCount}`}
-                        >
-                            {resume.name}
-                        </Cell>
+                    <Cell
+                        key={index}
+                        before={index + 1}
+                        after={<Badge type="number">{resume.jobIndex}</Badge>}
+                        style={cellStyle}
+                        description={`Всего просмотров ${resume.jobIndex}`}
+                        subtitle={`Отправлено откликов: ${resume.appliedCount}`}
+                    >
+                        {resume.name}
+                    </Cell>
 
                 ))}
             </div>

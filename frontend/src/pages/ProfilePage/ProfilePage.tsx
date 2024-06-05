@@ -2,7 +2,7 @@
 import React from 'react';
 import {Section, Avatar, Text, List, Cell, Badge, Button, ButtonCell, Placeholder, Card} from '@telegram-apps/telegram-ui';
 import {ResumeCard} from './ResumeCard/ResumeCard.tsx';
-
+import './ProfilePage.css'
 interface Resume {
     id: number;
     title: string;
@@ -45,19 +45,15 @@ const placeholderStyle: React.CSSProperties = {
 
 const ProfilePage: React.FC = () => {
     const handleToggleScript = (resumeId) => {
-        // Здесь вы можете вызвать функцию для запуска скрипта с идентификатором резюме
         console.log(`Запуск скрипта для резюме ${resumeId}`);
     };
+
 
     return (
         <>
 
             <Cell
-                subhead={
-                    <Text weight="2">
-                        Привет {user.name}
-                    </Text>
-                }
+                className='profile-header'
                 style={placeholderStyle}
                 description={
                     <div style={{display: 'flex', justifyContent: 'space-between', gap: '8px'}}>
@@ -76,26 +72,17 @@ const ProfilePage: React.FC = () => {
                     </div>
                 }
                 subtitle={`Ваш общий баланс и средняя метрика:`}
-            />
+            >
+                Привет {user.name}
+            </Cell>
 
             <div>
                 <ResumeCard
-                    resumeName="Резюме Frontend-разработчика"
-                    responses={25}
-                    invitations={3}
-                    rejections={2}
+                    resumeName="Frontend-разработчик"
                     views={100}
                     onToggleScript={handleToggleScript}
                 />
 
-                <ResumeCard
-                    resumeName="Резюме Frontend React"
-                    responses={25}
-                    invitations={3}
-                    rejections={2}
-                    views={100}
-                    onToggleScript={handleToggleScript}
-                />
             </div>
         </>
     );
