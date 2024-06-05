@@ -1,9 +1,11 @@
 const { makeRequest, getSimilarVacancies, applyToVacancy } = require('./requests-api');
 const { extractResumeIds, formatVacanciesForApply } = require('./formatters');
+const {resumeSaver} = require('../.')
 
-async function getResumeData(token) {
+async function getResumeData(token, telegram_id) {
 	const data = await makeRequest(token);
 	const ids = extractResumeIds(data);
+	
 	return { data, ids };
 }
 
