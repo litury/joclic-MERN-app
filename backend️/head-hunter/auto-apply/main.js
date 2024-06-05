@@ -2,9 +2,9 @@ const { getResumeData, createResumeObject, applyToVacancies, logResults } = requ
 
 const token = 'USERR7FE6V0UN9NASVJNTI9T2MIAO22UR21UBVQET2EOC2FIA5H8H8LQ95FA6FGK';
 
-async function autoApply(token, maxApplies) {
+async function autoApply(token, userId, maxApplies) {
 	try {
-		const resumeData = await getResumeData(token);
+		const resumeData = await getResumeData(token, userId);
 		let appliesPerResume = createResumeObject(resumeData.data);
 		let totalApplies = 0;
 		let resumeIndex = 0;
