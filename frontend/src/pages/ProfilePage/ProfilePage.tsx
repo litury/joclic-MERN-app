@@ -1,41 +1,15 @@
 // ProfilePage.tsx
-import React from 'react';
-import {Section, Avatar, Text, List, Cell, Badge, Button, ButtonCell, Placeholder, Card} from '@telegram-apps/telegram-ui';
+import React, {useEffect, useState} from 'react';
+import { Cell, Card} from '@telegram-apps/telegram-ui';
 import {ResumeCard} from './ResumeCard/ResumeCard.tsx';
 import './ProfilePage.css'
-interface Resume {
-    id: number;
-    title: string;
-    conversion: {
-        invites: number;
-        rejections: number;
-    };
-}
+import {useInitData} from "@tma.js/sdk-react";
 
-const user = {
-    name: 'Иван Петров',
-    avatarUrl: 'https://picsum.photos/id/1/100/100',
-    jobCoins: 120,
-    remainingApplications: 8,
-    resumes: [
-        {
-            id: 1,
-            title: 'Резюме 1',
-            conversion: {
-                invites: 5,
-                rejections: 2,
-            },
-        },
-        {
-            id: 2,
-            title: 'Резюме 2',
-            conversion: {
-                invites: 3,
-                rejections: 1,
-            },
-        },
-    ],
-};
+interface Resume {
+    id: string;
+    title: string;
+    totalViews: string
+}
 
 const placeholderStyle: React.CSSProperties = {
     backgroundColor: `var(--tg-theme-bg-color)`,
@@ -44,9 +18,42 @@ const placeholderStyle: React.CSSProperties = {
 };
 
 const ProfilePage: React.FC = () => {
-    const handleToggleScript = (resumeId) => {
-        console.log(`Запуск скрипта для резюме ${resumeId}`);
+    const initData = useInitData();
+    const telegram_id = initData?.user?.id
+    const telegram_name = initData?.user?.firstName
+    const [resumes, setResumes] = useState<Resume[]>([]);    const [isLoading, setIsLoading] = useState(true);
+
+    const handleToggleScript = (resumeId: string, shouldStart: boolean) => {
+        if (shouldStart) {
+            console.log(`Запуск скрипта для резюме ${resumeId}`);
+            // Код для запуска скрипта
+        } else {
+            console.log(`Остановка скрипта для резюме ${resumeId}`);
+            // Код для остановки скрипта
+        }
     };
+
+    useEffect(() => {
+        const fetchResumes = async () => {
+            const response = await fetch(`https://2537546-ps47079.twc1.net/profile?telegram_id=${telegram_id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            setResumes(data);
+            setIsLoading(false);
+        };
+
+        fetchResumes();
+
+    }, [telegram_id]);
+
+    useEffect(() => {
+        console.log(resumes)
+
+    }, [resumes]);
 
 
     return (
@@ -73,22 +80,26 @@ const ProfilePage: React.FC = () => {
                 }
                 subtitle={`Ваш общий баланс и средняя метрика:`}
             >
-                Привет {user.name}
+                Привет {telegram_name}
             </Cell>
 
             <div>
-                <ResumeCard
-                    resumeName="Frontend-разработчик"
-                    views={100}
-                    onToggleScript={handleToggleScript}
-                />
-
+                {isLoading ? (
+                    <div>Загрузка...</div>
+                ) : (
+                    resumes.map((resume) => (
+                        <ResumeCard
+                            key={resume.id}
+                            resumeName={resume.title}
+                            views={resume.totalViews}
+                            id={resume.id}
+                            onToggleScript={handleToggleScript}
+                        />
+                    ))
+                )}
             </div>
         </>
     );
 };
-
-export default ProfilePage;
-
 
 export {ProfilePage}
