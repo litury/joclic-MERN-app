@@ -28,17 +28,15 @@ const ProfilePage: React.FC = () => {
             console.log(`Запуск скрипта для резюме ${resumeId}`);
 
             try {
-                const response = await fetch('https://your-api-endpoint.com/apply', {
+                const response = await fetch('https://2537546-ps47079.twc1.net/apply', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer your-token-here', // Замените на актуальный токен
                     },
                     body: JSON.stringify({
                         resumeId: resumeId,
                         telegram_id: telegram_id,
-                        maxApplies: 10, // Замените на желаемое количество откликов
-                        // Другие необходимые данные
+                        maxApplies: 10,
                     }),
                 });
 
@@ -48,14 +46,12 @@ const ProfilePage: React.FC = () => {
 
                 const result = await response.json();
                 console.log(result);
-                // Обработка успешного ответа
+
             } catch (error) {
                 console.error('Ошибка при отправке запроса:', error);
-                // Обработка ошибки
             }
         } else {
             console.log(`Остановка скрипта для резюме ${resumeId}`);
-            // Логика для остановки скрипта
         }
     };
 
