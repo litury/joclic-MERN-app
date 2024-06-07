@@ -23,13 +23,39 @@ const ProfilePage: React.FC = () => {
     const telegram_name = initData?.user?.firstName
     const [resumes, setResumes] = useState<Resume[]>([]);    const [isLoading, setIsLoading] = useState(true);
 
-    const handleToggleScript = (resumeId: string, shouldStart: boolean) => {
+    const handleToggleScript = async (resumeId: string, shouldStart: boolean) => {
         if (shouldStart) {
             console.log(`Запуск скрипта для резюме ${resumeId}`);
-            // Код для запуска скрипта
+
+            try {
+                const response = await fetch('https://your-api-endpoint.com/apply', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer your-token-here', // Замените на актуальный токен
+                    },
+                    body: JSON.stringify({
+                        resumeId: resumeId,
+                        telegram_id: telegram_id,
+                        maxApplies: 10, // Замените на желаемое количество откликов
+                        // Другие необходимые данные
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Проблема с отправкой запроса');
+                }
+
+                const result = await response.json();
+                console.log(result);
+                // Обработка успешного ответа
+            } catch (error) {
+                console.error('Ошибка при отправке запроса:', error);
+                // Обработка ошибки
+            }
         } else {
             console.log(`Остановка скрипта для резюме ${resumeId}`);
-            // Код для остановки скрипта
+            // Логика для остановки скрипта
         }
     };
 
