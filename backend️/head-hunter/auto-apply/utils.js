@@ -1,11 +1,11 @@
 const { makeRequest, getSimilarVacancies, applyToVacancy } = require('./requests-api');
 const { extractResumeIds, formatVacanciesForApply } = require('./formatters');
-const {resumeSaver} = require('../.')
+const {resumeSaver} = require("../../db/accounts-model");
 
 async function getResumeData(token, telegram_id) {
 	const data = await makeRequest(token);
+	const resSaver = await resumeSaver(data, telegram_id)
 	const ids = extractResumeIds(data);
-	
 	return { data, ids };
 }
 
@@ -21,21 +21,25 @@ function createResumeObject(data) {
 	return appliesPerResume;
 }
 
-async function applyToVacancies(resumeId, token, appliesPerResume) {
+async function applyToVacancies(resumeId, token, appliesPerResume, maxApplies = 10) {
 	const vacancies = await getSimilarVacancies(resumeId, token);
+	
+	
 	if (vacancies.length > 0) {
-		const vacanciesToApply = await formatVacanciesForApply(vacancies, 1);
-		if (vacanciesToApply.length > 0) {
+		const vacanciesToApply = await formatVacanciesForApply(vacancies, maxApplies);
+		
+		for (const vacancy of vacanciesToApply) {
 			try {
-				await applyToVacancy(resumeId, vacanciesToApply[0].id, "Привет, я хочу у вас работать!", token);
+				console.log(`Отправляем отклик на вакансию ${vacancy.id}`);
+				await applyToVacancy(resumeId, vacancy.id, "Привет, я хочу у вас работать!", token);
 				if (appliesPerResume[resumeId]) {
 					appliesPerResume[resumeId].applies++;
-					appliesPerResume[resumeId].vacancies.push(vacanciesToApply[0].alternate_url);
+					appliesPerResume[resumeId].vacancies.push({ [vacancy.name]: vacancy.alternate_url });
 				} else {
 					console.log(`Резюме с ID ${resumeId} не найдено в объекте appliesPerResume.`);
 				}
 			} catch (error) {
-				console.error(`Ошибка при отправке отклика на вакансию ${vacanciesToApply[0].id}:`, error);
+				console.error(`Ошибка при отправке отклика на вакансию ${vacancy.id}:`, error);
 			}
 		}
 	}

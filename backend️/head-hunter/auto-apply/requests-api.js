@@ -33,6 +33,7 @@ async function makeRequest(token) {
 }
 
 async function getSimilarVacancies(resumeId, token) {
+	console.log(`Ищем вакансии для ${resumeId}`)
 	let allVacancies = [];
 	let page = 0;
 	let per_page = 100;
@@ -56,9 +57,12 @@ async function getSimilarVacancies(resumeId, token) {
 		
 		try {
 			const response = await axios(options);
-			allVacancies = allVacancies.concat(response.data.items);
-			totalPages = response.data.pages;
-			page++;
+			console.log(`Ответ от hh.ru: ${JSON.stringify(response.data.items.length, null, 2)}`);
+			return response.data.items;
+			
+			// allVacancies = allVacancies.concat(response.data.items);
+			// totalPages = response.data.pages;
+			// page++;
 		} catch (error) {
 			console.error('Ошибка при выполнении запроса:', error);
 			if (error.response && error.response.status === 403) {
