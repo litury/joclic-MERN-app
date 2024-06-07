@@ -1,21 +1,32 @@
 import React from 'react';
-import { Cell, Divider, Badge, Switch } from '@telegram-apps/telegram-ui';
+import { Cell, Switch } from '@telegram-apps/telegram-ui';
 
-const ResumeCard = ({ resumeName, responses, invitations, rejections, views, onToggleScript }) => {
+interface ResumeCardProps {
+    resumeName: string;
+    views: string;
+    id: string;
+    onToggleScript: (resumeId: string, shouldStart: boolean) => void;
+}
+
+const ResumeCard: React.FC<ResumeCardProps> = ({ resumeName, views, id, onToggleScript }) => {
     const cardStyle: React.CSSProperties = {
         backgroundColor: `var(--tg-theme-bg-color)`,
         marginBottom: '8px',
     };
 
+    const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        // Вызываем onToggleScript с ID резюме и состоянием переключателя
+        onToggleScript(id, event.target.checked);
+    };
+
     return (
         <>
-            <Divider/>
         <Cell
             style={cardStyle}
             subtitle="Поиск по рекомендациям HH.ru"
             after={
                 <Switch
-                    onChange={() => onToggleScript(resumeName)}
+                    onChange={handleSwitchChange}
                 />
             }
             description={
