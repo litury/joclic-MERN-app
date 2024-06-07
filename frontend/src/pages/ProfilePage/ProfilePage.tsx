@@ -8,7 +8,8 @@ import {useInitData} from "@tma.js/sdk-react";
 interface Resume {
     id: string;
     title: string;
-    totalViews: string
+    totalViews: string;
+    isScriptActive: boolean;
 }
 
 const placeholderStyle: React.CSSProperties = {
@@ -22,38 +23,6 @@ const ProfilePage: React.FC = () => {
     const telegram_id = initData?.user?.id
     const telegram_name = initData?.user?.firstName
     const [resumes, setResumes] = useState<Resume[]>([]);    const [isLoading, setIsLoading] = useState(true);
-
-    const handleToggleScript = async (resumeId: string, shouldStart: boolean) => {
-        if (shouldStart) {
-            console.log(`Запуск скрипта для резюме ${resumeId}`);
-
-            try {
-                const response = await fetch('https://2537546-ps47079.twc1.net/apply', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        resumeId: resumeId,
-                        telegram_id: telegram_id,
-                        maxApplies: 10,
-                    }),
-                });
-
-                if (!response.ok) {
-                    throw new Error('Проблема с отправкой запроса');
-                }
-
-                const result = await response.json();
-                console.log(result);
-
-            } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
-            }
-        } else {
-            console.log(`Остановка скрипта для резюме ${resumeId}`);
-        }
-    };
 
     useEffect(() => {
         const fetchResumes = async () => {
@@ -115,7 +84,7 @@ const ProfilePage: React.FC = () => {
                             resumeName={resume.title}
                             views={resume.totalViews}
                             id={resume.id}
-                            onToggleScript={handleToggleScript}
+                            isScriptActive={resume.isScriptActive}
                         />
                     ))
                 )}
