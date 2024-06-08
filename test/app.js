@@ -68,8 +68,8 @@ app.delete('/delete-apply', async (req, res) => {
 	}
 });
 
-server.listen(3001, () => {
-	console.log('Сервер запущен на порту 3001');
+server.listen(3000, () => {
+	console.log('Сервер запущен на порту 3000');
 });
 
 
