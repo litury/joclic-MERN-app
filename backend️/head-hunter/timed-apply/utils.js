@@ -1,5 +1,6 @@
 const axios = require('axios');
-
+const {getAccessToken, updateScriptStatus} = require("../../db/accounts-model");
+const {applyToVacancy} = require("./requests-api");
 
 // Запрашиваем все вакансии
 async function getAllRemoteVacancies(token) {
@@ -98,7 +99,6 @@ async function getVacanciesWithoutResponses(token, resumeId) {
 	
 	// Получаем все отклики
 	const responses = await getResponses(token);
-	console.log(responses);
 
 // Фильтруем отклики по конкретному резюме, проверяя наличие объекта resume
 	const responsesForResume = responses.filter(response => response.resume && response.resume.id === resumeId);
@@ -117,5 +117,29 @@ async function getVacanciesWithoutResponses(token, resumeId) {
 	return vacanciesWithoutResponses;
 }
 
+// Функция для обработки отправки откликов
+async function processVacancyApplications(resumeId, telegramId, maxApplies) {
+	const token = await getAccessToken(telegramId);
+	const vacancies = await getVacanciesWithoutResponses(token, resumeId);
+	console.log(`Получили ${vacancies.length} вакансий`);
+	
+	// Обновляем статус скрипта в MongoDB
+	await updateScriptStatus(telegramId, resumeId, true);
+	
+	// Счетчик отправленных откликов
+	let appliedCount = 0;
+	
+	// Отправляем отклики, пока не достигнем maxApplies или пока есть доступные вакансии
+	for (const vacancy of vacancies) {
+		if (appliedCount < maxApplies) {
+			console.log(`Отправляем отклик на вакансию ${vacancy.id}`);
+			await applyToVacancy(resumeId, vacancy.id, token);
+			appliedCount++;
+		} else {
+			break; // Прерываем цикл, если достигли лимита
+		}
+	}
+}
 
-module.exports = { getVacanciesWithoutResponses };
+
+module.exports = { processVacancyApplications };
