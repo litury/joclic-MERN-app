@@ -83,7 +83,7 @@ const ProfilePage: React.FC = () => {
                             key={resume.id}
                             resumeName={resume.title}
                             views={resume.totalViews}
-                            id={resume.id}
+                            resume_id={resume.id}
                             isScriptActive={resume.isScriptActive}
                         />
                     ))
