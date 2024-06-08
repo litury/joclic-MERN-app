@@ -15,11 +15,25 @@ import {useInitData, useBackButton} from "@tma.js/sdk-react";
 import './WelcomePage.css'
 import {Link} from "@/components/Link/Link.tsx";
 
+type Vacancy = {
+    [key: string]: string; // Каждый элемент массива vacancies представляет собой объект с одной парой ключ-значение
+};
+
+type ResumeData = {
+    title: string;
+    applies: number;
+    vacancies: Vacancy[];
+};
+
+type Resume = {
+    [key: string]: ResumeData; // Объект resumes содержит ключи, соответствующие ID резюме, и значения типа ResumeData
+};
+
 const WelcomePage = () => {
     const initData = useInitData();
     const backButton = useBackButton();
     const telegram_id = initData?.user?.id
-    const [resumes, setResumes] = useState([]);
+    const [resumes, setResumes] = useState<Resume>({});
     const [isLoading, setIsLoading] = useState(true);
     const [expanded, setExpanded] = useState(false);
     const handleAccordionChange = () => {
@@ -36,6 +50,7 @@ const WelcomePage = () => {
                 body: JSON.stringify({ telegram_id: telegram_id }),
             });
             const data = await response.json();
+            console.log(data);
             setResumes(data);
             setIsLoading(false);
         };
@@ -56,9 +71,7 @@ const WelcomePage = () => {
         console.log(resumes);
     }, [resumes]);
 
-    const totalApplies = Object.values(resumes).reduce((acc, curr) => {
-        return acc + curr.applies;
-    }, 0);
+    const totalApplies = Object.values(resumes).reduce((acc, curr) => acc + curr.applies, 0);
 
     if (isLoading) {
         return (
@@ -131,7 +144,5 @@ const WelcomePage = () => {
         </>
     );
 };
-
-
 
 export {WelcomePage};
