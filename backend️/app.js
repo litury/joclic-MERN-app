@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 // Разрешение CORS
 app.use(cors({
-	origin: ["https://tg-mini-app.local", "https://hhcheckerfront-1ket.vercel.app", "https://litury-hhcheckerfront-4372.twc1.net"]
+	origin: ["https://tg-mini-app.local", "https://hhcheckerfront-1ket.vercel.app", "https://litury-hhcheckerfront-4372.twc1.net"],
 	credentials: true,
 	methods: ["GET", "POST", "PUT", "DELETE"],
 	allowedHeaders: ["Content-Type", "Authorization"]
