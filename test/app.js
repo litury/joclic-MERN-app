@@ -2,7 +2,7 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const {Connect} = require("taskforce-connector");
-
+const {connectDB} = require('./db/connectDB')
 const {handleAuth, checkAuth} = require('./head-hunter/auth/authController');
 const {autoApply} = require('./head-hunter/auto-apply/autoApplyController');
 const {getProfile} = require('./head-hunter/profile/profileController')
@@ -10,6 +10,7 @@ const {applyToVacanciesController} = require('./head-hunter/timed-apply/timedApp
 const {myQueue} = require('./queues/responseCheckerQueue');
 const{updateScriptStatus} = require('./db/accounts-model');
 
+connectDB()
 const app = express();
 const server = http.createServer(app);
 
