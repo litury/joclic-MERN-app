@@ -32,7 +32,7 @@ export const App: FC = () => {
     // Функция для проверки статуса авторизации
     const checkAuthStatus = async (userID: any) => {
         try {
-            const response = await fetch(`https://2537546-ps47079.twc1.net/check-auth?userId=${userID}`);
+            const response = await fetch(`https://litury-josclicprod-a0d4.twc1.net/check-auth?userId=${userID}`);
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');

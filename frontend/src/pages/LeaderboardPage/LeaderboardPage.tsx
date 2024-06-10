@@ -1,7 +1,6 @@
 // LeaderboardPage.tsx
 import React, {useEffect} from 'react';
 import {
-    Text,
     Cell,
     Badge,
 

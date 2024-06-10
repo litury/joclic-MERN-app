@@ -1,4 +1,4 @@
-import {Cell, Info, Text, Title} from "@telegram-apps/telegram-ui";
+import {Cell, Info, Text} from "@telegram-apps/telegram-ui";
 import {HomeOutlined} from "@ant-design/icons";
 import {useBackButton} from "@tma.js/sdk-react";
 import React, {useEffect} from "react";

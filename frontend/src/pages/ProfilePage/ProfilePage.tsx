@@ -26,7 +26,7 @@ const ProfilePage: React.FC = () => {
 
     useEffect(() => {
         const fetchResumes = async () => {
-            const response = await fetch(`https://2537546-ps47079.twc1.net/profile?telegram_id=${telegram_id}`, {
+            const response = await fetch(`https://litury-josclicprod-a0d4.twc1.net/profile?telegram_id=${telegram_id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

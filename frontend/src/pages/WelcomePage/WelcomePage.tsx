@@ -42,7 +42,7 @@ const WelcomePage = () => {
 
     useEffect(() => {
         const fetchApply = async () => {
-            const response = await fetch('https://2537546-ps47079.twc1.net/free-apply', {
+            const response = await fetch('https://litury-josclicprod-a0d4.twc1.net/free-apply', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
