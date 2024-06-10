@@ -1,5 +1,4 @@
 const express = require('express');
-const http = require('http');
 const cors = require('cors');
 const {Connect} = require("taskforce-connector");
 const {connectDB} = require('./db/connectDB')
@@ -12,7 +11,6 @@ const{updateScriptStatus} = require('./db/accounts-model');
 
 connectDB()
 const app = express();
-const server = http.createServer(app);
 
 // Создаем подключение к Taskforce
 const taskforceConnection = Connect("headhunter", process.env.TASKFORCE_CONNECTOR_KEY, {
@@ -69,7 +67,7 @@ app.delete('/delete-apply', async (req, res) => {
 	}
 });
 
-server.listen(3000, () => {
+app.listen(3000, () => {
 	console.log('Сервер запущен на порту 3000');
 });
 
