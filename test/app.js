@@ -67,8 +67,9 @@ app.delete('/delete-apply', async (req, res) => {
 	}
 });
 
-app.listen(3005, () => {
-	console.log('Сервер запущен на порту 3005');
-});
+const PORT = process.env.PORT || 3000; // Используйте порт из переменной окружения или 3000, если он не предоставлен
 
+app.listen(PORT, () => {
+	console.log(`Сервер запущен на порту ${PORT}`);
+});
 
