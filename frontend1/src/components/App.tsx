@@ -27,12 +27,13 @@ export const App: FC = () => {
     const viewport = useViewport();
     const initData = useInitData();
     const userID = initData?.user?.id;
-    const { isAuthorized, setIsAuthorized } = useAuthStore();
+    const {isAuthorized, setIsAuthorized} = useAuthStore();
 
     // Функция для проверки статуса авторизации
     const checkAuthStatus = async (userID: any) => {
         try {
-            const response = await fetch(`https://litury-josclicprod-a0d4.twc1.net/check-auth?userId=${userID}`);
+            const response = await fetch(`https://server.joclic.ru/check-auth?userId=${userID}`);
+            console.log('response:', response);
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -81,22 +82,23 @@ export const App: FC = () => {
 
     return (
 
-        <AppRoot appearance={miniApp.isDark ? 'dark' : 'light'} platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}>
+        <AppRoot appearance={miniApp.isDark ? 'dark' : 'light'}
+                 platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}>
             <Router location={location} navigator={reactNavigator}>
                 {isAuthorized === null ? (
                     <div>Loading...</div>
                 ) : (
                     <>
-                    <Routes>
-                        {routes.map((route) => (
-                            <Route key={route.path} {...route} />
-                        ))}
-                        <Route
-                            path="*"
-                            element={<Navigate to={isAuthorized ? '/profile' : '/start'} replace={true} />}
-                        />
-                    </Routes>
-                        {isAuthorized && location.pathname !== '/welcome' && <AuthorizedTabbar />}
+                        <Routes>
+                            {routes.map((route) => (
+                                <Route key={route.path} {...route} />
+                            ))}
+                            <Route
+                                path="*"
+                                element={<Navigate to={isAuthorized ? '/profile' : '/start'} replace={true}/>}
+                            />
+                        </Routes>
+                        {isAuthorized && location.pathname !== '/welcome' && <AuthorizedTabbar/>}
                     </>
                 )}
             </Router>

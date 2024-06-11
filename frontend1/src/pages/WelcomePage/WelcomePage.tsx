@@ -29,6 +29,9 @@ type Resume = {
     [key: string]: ResumeData; // Объект resumes содержит ключи, соответствующие ID резюме, и значения типа ResumeData
 };
 
+const API_ENDPOINT = import.meta.env.API_ENDPOINT;
+
+
 const WelcomePage = () => {
     const initData = useInitData();
     const backButton = useBackButton();
@@ -42,7 +45,7 @@ const WelcomePage = () => {
 
     useEffect(() => {
         const fetchApply = async () => {
-            const response = await fetch('https://litury-josclicprod-a0d4.twc1.net/free-apply', {
+            const response = await fetch(`${API_ENDPOINT}/free-apply`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,13 +103,9 @@ const WelcomePage = () => {
                             Подгружаем резюме...
                         </Accordion.Summary>
                         <Accordion.Content>
-
-
                             <Cell className="skeleton">
                                 Пожалуйста подождите...
                             </Cell>
-
-
                         </Accordion.Content>
                     </Accordion>
                 </Skeleton>
@@ -124,23 +123,18 @@ const WelcomePage = () => {
                 `}
                 header="Успешно! 🎉"
             >
-
             </Placeholder>
-
             {Object.entries(resumes).map(([resumeId, resumeData]) => (
                 <>
                     <ResumeCard key={resumeId} resumeData={resumeData}/>
                     <Divider/>
                 </>
             ))}
-
                 <div style={{display: 'flex', justifyContent: 'center', marginTop: '16px'}}>
                     <Link to="/profile">
                         <Button size="l">Перейти в профиль</Button>
                     </Link>
                 </div>
-
-
         </>
     );
 };

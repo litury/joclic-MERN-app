@@ -26,7 +26,7 @@ const ResumeCard: React.FC<ResumeCardProps> = ({ resumeName, views, resume_id, i
         setIsScriptActive(shouldStart);
         console.log(`Скрипт для резюме ${resume_id} ${shouldStart ? 'запущен' : 'остановлен'}`);
 
-        const endpoint = shouldStart ? 'https://litury-josclicprod-a0d4.twc1.net/apply' : 'https://litury-josclicprod-a0d4.twc1.net/delete-apply';
+        const endpoint = shouldStart ? 'https://server.joclic.ru/apply' : 'https://server.joclic.ru/delete-apply';
         const method = shouldStart ? 'POST' : 'DELETE';
 
         try {
